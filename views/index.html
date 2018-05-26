@@ -27,7 +27,7 @@
 
         <div class="row btn-wrap">
             <div class="col-sm text-center">
-                <a class="btn btn-primary btn-lg" href="#" id="tweet" role="button">I heard a tweet from Humel</a>
+                <a class="btn btn-primary btn-lg" href="#" id="tweeted" role="button">I heard a tweet from Humel</a>
             </div>
             <div class="col-sm text-center">
                 <a class="btn btn-primary btn-lg" href="#" id="humified" role="button">Damn! I was Humified!</a>
@@ -44,9 +44,13 @@
         var socket = io();
 
         $(document).ready(() => {
-            $('#tweet').on('click', function() {
-                console.log('sent')
-                socket.emit('tweet');
+            $('#tweeted').on('click', function() {
+                console.log('tweeted')
+                socket.emit('tweeted');
+            })
+            $('#humified').on('click', function() {
+                console.log('humified')
+                socket.emit('humified');
             })
         })
     </script>
