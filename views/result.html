@@ -7,12 +7,61 @@
     <title>Humelweeter</title>
 
     <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+        .title {
+            margin-top: 100px;
+        }
+
+        .wrap {
+            margin-top: 200px;
+        }
+
+        .desc {
+            font-size: 30px;
+        }
+
+        #tweets, #humifications{
+            font-size: 150px;
+            font-weight: 400;
+        }    
+
+    </style>
 </head>
 <body>
-    <h1>Was you Humified today?</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm text-center title">
+                <h1>Humel is winning!</h1>
+            </div>
+        </div>
 
-    <script src="//code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <div class="row wrap">
+            <div class="col-sm text-center">
+                <p class="desc">Humelweets</p>
+                <p id="tweets">0</p>
+            </div>
+            <div class="col-sm text-center">
+                <p class="desc">Humifications</p>
+                <p id="humifications">0</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>    
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+    <!-- <script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> -->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        $(document).ready(() => {
+            socket.on('test', () => {
+                $('#tweets').text(adfhklhl)
+                // $('#tweets').text(data.tweets)
+                // $('#humifications').text(data.humifications)
+            })
+        })
+    </script>
 </body>
 </html>

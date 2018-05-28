@@ -21,13 +21,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm text-center title">
-                <h1>Was you Humified last hour?</h1>
+                <h1>Was you Humified now?</h1>
             </div>
         </div>
 
         <div class="row btn-wrap">
             <div class="col-sm text-center">
-                <a class="btn btn-primary btn-lg" href="#" id="tweeted" role="button">I heard a tweet from Humel</a>
+                <a class="btn btn-primary btn-lg" href="#" id="tweeted" role="button">Humel tweeted again!</a>
             </div>
             <div class="col-sm text-center">
                 <a class="btn btn-primary btn-lg" href="#" id="humified" role="button">Damn! I was Humified!</a>
@@ -45,12 +45,15 @@
 
         $(document).ready(() => {
             $('#tweeted').on('click', function() {
-                console.log('tweeted')
-                socket.emit('tweeted');
+                // socket.emit('tweeted');
+                socket.emit('updated');
             })
             $('#humified').on('click', function() {
-                console.log('humified')
                 socket.emit('humified');
+            })
+
+            socket.on('test', () => {
+                alert('That works!')
             })
         })
     </script>
