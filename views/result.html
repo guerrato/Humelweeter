@@ -56,10 +56,14 @@
         var socket = io();
 
         $(document).ready(() => {
-            socket.on('test', () => {
-                $('#tweets').text(adfhklhl)
-                // $('#tweets').text(data.tweets)
-                // $('#humifications').text(data.humifications)
+            socket.on('tweeted', (obj) => {
+                $('#tweets').html(obj.tweets)
+                $('#humifications').html(obj.humifications)
+            })
+            
+            socket.on('humified', (obj) => {
+                $('#tweets').html(obj.tweets)
+                $('#humifications').html(obj.humifications)
             })
         })
     </script>

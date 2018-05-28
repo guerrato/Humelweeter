@@ -45,15 +45,11 @@
 
         $(document).ready(() => {
             $('#tweeted').on('click', function() {
-                // socket.emit('tweeted');
-                socket.emit('updated');
-            })
-            $('#humified').on('click', function() {
-                socket.emit('humified');
+                socket.emit('tweeted')
             })
 
-            socket.on('test', () => {
-                alert('That works!')
+            $('#humified').on('click', function() {
+                socket.emit('humified')
             })
         })
     </script>

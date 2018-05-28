@@ -26,7 +26,6 @@ app.use("*", (req, res) => {
 })
 
 io.on('connection', (socket) => {
-	socket.join('humelroom')
 	console.log('a user connected')
 
 	socket.on('disconnect', () => {
@@ -34,74 +33,67 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('tweeted', () => {
-		console.log('tweeted')
-		let obj = {}
+		let data = {}
 
-		fs.readFile('db.json', 'utf8', function (err, data) {
+		fs.readFile('db.json', 'utf8', function (err, file) {
 			if (err) {
 				throw err
 			}
 
-			if (data != "") {
-				obj = JSON.parse(data)
+			if (file != "") {
+				data = JSON.parse(file)
 			}
 
-			let now = new Date()
-			let mm = now.getMonth() + 1
-			let dd = now.getDate()
+			let date = getToday()
 
-			let date = [now.getFullYear(), (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('-')
-
-			if (date in obj) {
-				obj[date]['tweet'] += 1
+			if (date in data) {
+				data[date]['tweets'] += 1
 			} else {
-				obj[date] = {
-					'tweet': 1,
-					'humification': 0
+				data[date] = {
+					'tweets': 1,
+					'humifications': 0
 				}
 			}
 
-			fs.writeFile('db.json', JSON.stringify(obj), (err) => {
+			fs.writeFile('db.json', JSON.stringify(data), (err) => {
 				if (err) {
 					throw err
 				}
+
+				io.emit('tweeted', data[date])
 			})
 		})
 	})
 
 	socket.on('humified', () => {
-		console.log('humified')
-		
-		let obj = {}
+		let data = {}
 
-		fs.readFile('db.json', 'utf8', function (err, data) {
+		fs.readFile('db.json', 'utf8', function (err, file) {
 			if (err) {
 				throw err
 			}
 
-			if (data != "") {
-				obj = JSON.parse(data)
+			if (file != "") {
+				data = JSON.parse(file)
 			}
 
-			let now = new Date()
-			let mm = now.getMonth() + 1
-			let dd = now.getDate()
+			let date = getToday()
 
-			let date = [now.getFullYear(), (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('-')
-
-			if (date in obj) {
-				obj[date]['humification'] += 1
+			if (date in data) {
+				data[date]['humifications'] += 1
 			} else {
-				obj[date] = {
-					'tweet': 0,
-					'humification': 1
+				data[date] = {
+					'tweets': 0,
+					'humifications': 1
 				}
 			}
 
-			fs.writeFile('db.json', JSON.stringify(obj), (err, socket) => {
+			fs.writeFile('db.json', JSON.stringify(data), (err) => {
 				if (err) {
 					throw err
 				}
+
+				io.emit('humified', data[date])
 			})
 		})	
 	})
